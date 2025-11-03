@@ -1,0 +1,17 @@
+*venv*
+*cache*
+.pytest_cache
+.ipynb_checkpoints
+.DS_Store
+*.egg-info
+__pycache__/
+*.pyc
+.vscode/
+.codegpt
+figs
+paper
+.codegpt
+archive
+*gif
+*png
+*pdf

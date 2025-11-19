@@ -1,14 +1,16 @@
 # Invariant-Preserving Integration with `homproj`
 
-A Python package for geometric integration that preserves invariants (conservation laws) to machine precision. Extends `scipy.integrate.solve_ivp` with automatic invariant preservation for Hamiltonian systems, momentum conservation, and general nonlinear invariants.
+A Python package for geometric integration that preserves invariants (conservation laws) to machine precision. Extends `scipy.integrate.solve_ivp` with automatic invariant preservation for general nonlinear invariants with minimal overhead.
+
+See our [preprint](https://arxiv.org/pdf/2511.02131) for details! 
 
 ## Features
 
-- 🎯 **Exact invariant preservation** to high precision
-- 🔄 **Drop-in replacement** for `scipy.integrate.solve_ivp`
-- 📊 **Adaptive integration** with DOP853, RK45, and other high-order methods
-- ⚡ **Minimal overhead** no methods require non-linear solves
-- 🌍 **Multiple invariants** preserved simultaneously
+- **Exact invariant preservation** to high precision
+- **Drop-in replacement** for `scipy.integrate.solve_ivp`
+- **Adaptive integration** with DOP853, RK45, and other high-order methods
+- **Minimal overhead** no methods require non-linear solves
+- **Multiple invariants** preserved simultaneously
 
 ## Installation
 
@@ -95,7 +97,7 @@ sol = solve_ivp(
 # Energy and momentum preserved to ~1e-15!
 ```
 
-### Option 2: Numerical Functions (slightly slower)
+### Option 2: Numerical Functions
 
 If you provide numpy functions, the gradients will be calculated using finite differences:
 
@@ -118,9 +120,9 @@ sol = solve_ivp(
 )
 ```
 
-### Option 3: Functions + Gradients (Best Performance)
+### Option 3: Functions + Gradients
 
-Provide analytical gradients for maximum speed:
+Provide analytical gradients:
 
 ```python
 def energy(q1, q2, p1, p2):
@@ -147,7 +149,6 @@ sol = solve_ivp(
     gradients=[grad_energy, grad_angular_momentum]
 )
 
-# Fastest option with exact preservation!
 ```
 
 ## Key Parameters
@@ -221,52 +222,29 @@ sol = solve_ivp(
     itol=1e-14
 )
 
-# All three invariants preserved to ~1e-15!
 ```
 
-## Performance Tips
-1. **Set appropriate tolerances**: `itol=1e-14` preserves invaraints to machine precision. Higher is faster.
-2. **Reduce iterations**: `max_iterations=1` often sufficient for most problems. Often 
-3. **Faster projection integrator**: 
+## Linear Homogeneous Projection
 
-## Advanced: Linear Homogeneous Projection
-
-For special cases where invariants are homogeneous (e.g., $H(\lambda^{\nu} y) = \lambda^k H(y)$), you can use `LinearHomogeneousProjector` for maximum efficiency. This is typically only needed for advanced applications - see `simple_example.ipynb` for details.
-
-## Repository Structure
-
-```
-invariant-preservation/
-├── homproj/                    # Main package
-│   ├── adaptive.py             # solve_ivp with projection
-│   ├── homproj.py              # HomogeneousProjector
-│   ├── linhomproj.py           # LinearHomogeneousProjector
-│   └── numeric.py              # Fixed-step integrators
-├── simple_example.ipynb        # Tutorial notebook ⭐ Start here!
-├── kepler_example/             # Detailed Kepler problem analysis
-├── geodesic_example/           # Torus geodesics
-└── paper/                      # Research paper
-```
+For special cases where invariants are homogeneous (e.g., $H(\lambda^{\nu} y) = \lambda^k H(y)$), you can use `LinearHomogeneousProjector` for maximum efficiency.
 
 ## Citation
 
 If you use this code in research, please cite:
 
 ```bibtex
-@article{tapley2024homogeneous,
-  title={Homogeneous Projection Methods for Invariant Preservation},
-  author={Tapley, Ben and Others},
-  journal={In preparation},
-  year={2024}
+@article{tapley2025explicit,
+  title={Explicit invariant-preserving integration of differential equations using homogeneous projection},
+  author={Tapley, Benjamin Kwanen},
+  journal={arXiv preprint arXiv:2511.02131},
+  year={2025}
 }
 ```
 
-## Examples and Tutorials
+## More examples 
 
-- **`simple_example.ipynb`**: Complete tutorial - **start here!** ⭐
-- **`kepler_example/`**: Detailed Kepler problem analysis
-- **`geodesic_example/`**: Torus geodesics with energy and path length
-- **`double_pendulum_example/`**: Chaotic dynamics with conservation
+- **`simple_example.ipynb`**: Complete tutorial - **start here!**
+- There are more examples for ODEs (Kepler and double pendulums) and PDEs (KdV and Camassa-Holm)
 
 ## Contributing
 

@@ -16,11 +16,17 @@ See our [preprint](https://arxiv.org/pdf/2511.02131) for details!
 
 ```bash
 # Clone the repository
-git clone https://github.com/bentaps/invariant-preservation.git
+git clone https://github.com/bentaps/homproj.git
 cd invariant-preservation
 
 # Install in development mode
 pip install -e .
+```
+
+or using `pip`
+
+```bash
+pip install homproj
 ```
 
 ## Quick Start

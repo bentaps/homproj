@@ -1,0 +1,62 @@
+[build-system]
+requires = ["setuptools>=61.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "homproj"
+version = "0.1.1"
+description = "Adaptive invariant-preserving integration"
+readme = "README.md"
+license = {text = "MIT"}
+requires-python = ">=3.8"
+authors = [
+    {name = "Benjamin Kwanen Tapley", email = "bentapley@hotmail.com"},
+]
+maintainers = [
+    {name = "Benjamin Kwanen Tapley", email = "bentapley@hotmail.com"},
+]
+keywords = [
+    "differential-equations",
+    "geometric-integration",
+    "invariant-preservation",
+    "numerical-integration",
+    "adaptive-integration",
+    "scipy",
+    "ode-solver",
+]
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Intended Audience :: Science/Research",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.8",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Topic :: Scientific/Engineering :: Mathematics",
+    "Topic :: Scientific/Engineering :: Physics",
+]
+dependencies = [
+    "numpy>=1.20.0",
+    "scipy>=1.7.0",
+    "sympy>=1.8.0",
+]
+
+[project.urls]
+Homepage = "https://github.com/bentaps/homproj"
+Documentation = "https://github.com/bentaps/homproj#readme"
+Repository = "https://github.com/bentaps/homproj"
+Issues = "https://github.com/bentaps/homproj/issues"
+
+[tool.setuptools]
+zip-safe = false
+include-package-data = true
+
+[tool.setuptools.packages.find]
+where = ["."]
+include = ["homproj*"]
+
+[tool.setuptools.package-data]
+homproj = ["*.py"]
